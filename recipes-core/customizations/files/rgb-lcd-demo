@@ -1,0 +1,35 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          rgb-lcd-demo
+# Required-Start:
+# Required-Stop:
+# Default-Start:     S
+# Default-Stop:
+# Short-Description: rgb-lcd-demo
+# Description:       LCD Demo on Lemaker HiKey
+### END INIT INFO
+
+. /lib/lsb/init-functions
+
+PROGRAM=/usr/bin/rgb-lcd-demo
+
+case "$1" in
+  start)
+        $PROGRAM
+	;;
+  stop)
+        killall $PROGRAM
+	;;
+  force-reload|restart)
+	$0 start
+	;;
+  status)
+	exit 0
+	;;
+  *)
+	echo "Usage: /etc/init.d/rgb-lcd-demo {start|stop|restart|force-reload|status}"
+	exit 1
+esac
+
+exit 0

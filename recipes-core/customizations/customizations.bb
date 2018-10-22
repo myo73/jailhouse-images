@@ -24,6 +24,7 @@ SRC_URI = " \
     file://ivshmem-net \
     file://known_hosts \
     file://99-silent-printk.conf \
+    file://rgb-lcd-demo \
     file://20-jailhouse-motd"
 
 DEBIAN_DEPENDS = "openssh-server, passwd"
@@ -52,6 +53,9 @@ do_install() {
 
 	install -v -d ${D}/etc/update-motd.d
 	install -v -m 755 ${WORKDIR}/20-jailhouse-motd ${D}/etc/update-motd.d/
+
+	install -v -d ${D}/etc/init.d
+	install -v -m 755 ${WORKDIR}/rgb-lcd-demo ${D}/etc/init.d/
 
 	install -v -d ${D}/root
 	install -v -m 600 ${WORKDIR}/.bash_history-${MACHINE} ${D}/root/.bash_history
